@@ -1,3 +1,6 @@
 ﻿function ShowPopup() {
-    alert('You already have an account!');
+    alert('Vec imate nalog!');
+}
+function NoAccount() {
+    alert('Nalog ne postoji!');
 }
