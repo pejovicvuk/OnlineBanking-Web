@@ -1,5 +1,4 @@
-﻿
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,58 +10,52 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4070f4;
+    background: #f5f5f5; /* Changed background color */
 }
 
 .wrapper {
     position: relative;
-    max-width: 430px;
+    max-width: 400px; /* Adjusted maximum width */
     width: 100%;
     background: #fff;
-    padding: 34px;
-    border-radius: 6px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    padding: 40px; /* Increased padding */
+    border-radius: 10px; /* Increased border radius */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
     .wrapper h2 {
-        position: relative;
-        font-size: 22px;
-        font-weight: 600;
+        font-size: 24px;
+        font-weight: 700;
         color: #333;
+        margin-bottom: 20px; /* Added margin */
     }
 
         .wrapper h2::before {
             content: '';
             position: absolute;
             left: 0;
-            bottom: 0;
-            height: 3px;
-            width: 28px;
-            border-radius: 12px;
+            bottom: -10px; /* Adjusted position */
+            height: 4px; /* Increased height */
+            width: 50px; /* Increased width */
             background: #4070f4;
+            border-radius: 8px; /* Rounded corners */
         }
 
-    .wrapper form {
-        margin-top: 30px;
+    .wrapper form .input-box {
+        margin-bottom: 20px; /* Added margin */
     }
 
-        .wrapper form .input-box {
-            height: 52px;
-            margin: 18px 0;
-        }
-
 form .input-box input {
-    height: 100%;
+    height: 48px; /* Adjusted height */
     width: 100%;
     outline: none;
     padding: 0 15px;
-    font-size: 17px;
+    font-size: 16px; /* Decreased font size */
     font-weight: 400;
     color: #333;
-    border: 1.5px solid #C7BEBE;
-    border-bottom-width: 2.5px;
+    border: 1px solid #ddd; /* Soft border */
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease; /* Smooth transition */
 }
 
 .input-box input:focus,
@@ -70,41 +63,59 @@ form .input-box input {
     border-color: #4070f4;
 }
 
-form .policy {
+.form-group {
     display: flex;
     align-items: center;
+    margin-bottom: 20px; /* Added margin */
 }
 
-form h3 {
-    color: #707070;
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 10px;
+    .form-group label {
+        margin-right: 10px; /* Added margin */
+        font-weight: 500;
+        color: #555;
+    }
+
+.policy {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Added margin */
 }
+
+    .policy h3 {
+        font-size: 14px; /* Decreased font size */
+        font-weight: 500;
+        color: #555;
+        margin-left: 10px; /* Added margin */
+    }
 
 .input-box.button input {
+    height: 48px; /* Adjusted height */
+    width: 100%;
     color: #fff;
     letter-spacing: 1px;
     border: none;
     background: #4070f4;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
     .input-box.button input:hover {
         background: #0e4bf1;
     }
 
-form .text h3 {
-    color: #333;
-    width: 100%;
+.form-group.text h3 {
+    font-size: 14px; /* Decreased font size */
+    font-weight: 500;
+    color: #555;
     text-align: center;
 }
 
-    form .text h3 a {
+    .form-group.text h3 a {
         color: #4070f4;
         text-decoration: none;
     }
 
-        form .text h3 a:hover {
+        .form-group.text h3 a:hover {
             text-decoration: underline;
         }
