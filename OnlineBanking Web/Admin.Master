@@ -7,9 +7,25 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="CSS/StyleSheetAdmin.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
+        <header class="sticky-header">
+            <div class="header-inner">
+                <div class="logo">
+                    Your Logo Here
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="Home.aspx">Home</a></li>
+                        <li><a href="Home.aspx">Transakcije</a></li>
+                        <li><a href="Home.aspx">Nalog</a></li>
+                        <li><a href="Home.aspx">Racuni</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

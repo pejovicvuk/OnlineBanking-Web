@@ -111,11 +111,11 @@ form .input-box input {
     text-align: center;
 }
 
-    .form-group.text h3 a {
-        color: #4070f4;
-        text-decoration: none;
-    }
+.form-group.text h3 a {
+    color: #4070f4;
+    text-decoration: none;
+}
 
-        .form-group.text h3 a:hover {
-            text-decoration: underline;
-        }
+.form-group.text h3 a:hover {
+    text-decoration: underline;
+}
