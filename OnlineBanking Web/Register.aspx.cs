@@ -23,7 +23,7 @@ namespace OnlineBanking_Web
             string email = txtEmail.Text.Trim();
             string lozinka = txtPassword.Text.Trim();
 
-            if (Metode.KorisnikPostoji(email))
+            if (Metode.KorisnikPostoji(email, lozinka))
             {
                 string script = "NalogPostoji();";
                 ScriptManager.RegisterStartupScript(this, GetType(), "NalogPostojiScript", script, true);

@@ -5,5 +5,8 @@ function UspesnaRegistracija() {
     alert('Uspesno ste se registrovali!');
 }
 function NalogNePostoji() {
-    alert('Nalog ne postoji!');
+    alert('Nalog ne postoji/Netacna lozinka!');
+}
+function NemasRacun() {
+    alert('Izaberi ili napravi novi racun!');
 }

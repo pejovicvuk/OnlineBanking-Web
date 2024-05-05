@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +13,22 @@ namespace OnlineBanking_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                listaTransakcije.Items.Clear();
+                listaTransakcije.Items.Add(new ListItem("Select Transaction", "0"));
 
+                Metode.PrikaziOdabirRacuna(listaTransakcije);
+
+                decimal stanje = Metode.UkupnoStanje();
+                stanjeValue.InnerText = stanje.ToString() + " rsd";
+            }
+        }
+
+        protected void btnDepozit_Click(object sender, EventArgs e)
+        {
+            Metode.BankomatDepozit(listaTransakcije, txtTransakcijaSuma, this.Page);
+            stanjeValue.InnerText = Metode.UkupnoStanje().ToString();
         }
     }
 }

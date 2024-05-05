@@ -76,6 +76,7 @@
     <Content Include="Racuni.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="CSS\StyleSheetRegistration.css" />
+    <Content Include="CSS\StyleSheetHome.css" />
     <Content Include="Transakcije.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace OnlineBanking_Web
             string email = txtEmail.Text.Trim();
             string lozinka = txtPassword.Text.Trim();
 
-            if (Metode.KorisnikPostoji(email))
+            if (Metode.KorisnikPostoji(email, lozinka))
             {
                 Session["KorisnikID"] = Metode.KorisnikLogin(email, lozinka);
                 Response.Redirect("Home.aspx");

@@ -1,45 +1,49 @@
-﻿body {
+﻿body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-.sticky-header {
+
+.header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    background-color: #333; /* Header background color */
-    color: #fff; /* Header text color */
-    padding: 15px 0; /* Adjust padding as needed */
-    z-index: 1000; /* Ensure the header is on top of other elements */
+    height: 100%;
+    width: 300px; /* Adjust width as needed */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.header-inner {
-    width: 100%; /* Adjust width as needed */
-    display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center;
-}
-
-.logo {
-    font-size: 28px; /* Adjust font size as needed */
-    font-weight: bold; /* Adjust font weight as needed */
-    margin-right: 20px; /* Adjust margin between logo and nav links */
-}
-
-.nav-links {
-    list-style-type: none;
+.user-info h2 {
     margin: 0;
+}
+
+.navigation ul {
+    list-style-type: none;
     padding: 0;
-    display: flex;
+    margin: 20px 0 0;
+    text-align: center;
 }
 
-.nav-links li {
-    margin-right: 20px; /* Adjust spacing between links as needed */
+.navigation ul li {
+    margin-bottom: 10px;
 }
 
-.nav-links li:last-child {
-    margin-right: 0;
-}
-
-.nav-links a {
-    color: #fff; /* Adjust link color as needed */
+.navigation ul li a {
+    display: block;
     text-decoration: none;
+    color: #fff;
+    padding: 5px;
+}
+
+.navigation ul li a:hover {
+    background-color: #555;
+}
+.wrapper {
+    margin-top: 100px; /* Adjust as needed to accommodate the header height */
+    margin-left: 300px; /* Adjust as needed */
+    margin-right: 20px; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
 }
