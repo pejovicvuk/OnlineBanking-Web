@@ -127,6 +127,7 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Metode\Metode.cs" />
     <Compile Include="Transakcije.aspx.cs">
       <DependentUpon>Transakcije.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

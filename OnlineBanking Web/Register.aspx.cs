@@ -18,29 +18,22 @@ namespace OnlineBanking_Web
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = Konekcija.Connect();
-            string query = "select count(*) from Korisnik where email = @email";
-            SqlCommand cmdProvera = new SqlCommand(query, conn);
-            cmdProvera.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+            string ime = txtName.Text.Trim();
+            string prezime = txtSurname.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string lozinka = txtPassword.Text.Trim();
 
-            conn.Open();
-            int count = Convert.ToInt32(cmdProvera.ExecuteScalar());
-            if (count > 0)
+            if (Metode.KorisnikPostoji(email))
             {
-                string script = "ShowPopup();";
-                ScriptManager.RegisterStartupScript(this, GetType(), "PopupScript", script, true);
+                string script = "NalogPostoji();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "NalogPostojiScript", script, true);
             }
             else
             {
-                SqlCommand cmdInsert = new SqlCommand("Korisnik_Insert", conn);
-                cmdInsert.CommandType = CommandType.StoredProcedure;
-                cmdInsert.Parameters.Add("@Ime", SqlDbType.VarChar).Value = txtName.Text;
-                cmdInsert.Parameters.Add("@Prezime", SqlDbType.VarChar).Value = txtSurname.Text;
-                cmdInsert.Parameters.Add("@EMail", SqlDbType.VarChar).Value = txtEmail.Text;
-                cmdInsert.Parameters.Add("@Sifra", SqlDbType.VarChar).Value = txtPassword.Text;
-                cmdInsert.ExecuteNonQuery();
+                Metode.InsertKorisnik(ime, prezime, email, lozinka);
+                string script = "UspesnaRegistracija();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "UspesnaRegistracijaScript", script, true);
             }
-            conn.Close();
         }
     }
 }

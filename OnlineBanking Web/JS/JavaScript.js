@@ -1,6 +1,9 @@
-﻿function ShowPopup() {
+﻿function NalogPostoji() {
     alert('Vec imate nalog!');
 }
-function NoAccount() {
+function UspesnaRegistracija() {
+    alert('Uspesno ste se registrovali!');
+}
+function NalogNePostoji() {
     alert('Nalog ne postoji!');
 }

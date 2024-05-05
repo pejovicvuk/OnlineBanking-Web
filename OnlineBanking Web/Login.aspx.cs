@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace OnlineBanking_Web
 {
@@ -17,23 +18,18 @@ namespace OnlineBanking_Web
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = Konekcija.Connect();
-            conn.Open();
-            using (SqlCommand cmd = new SqlCommand("SELECT Id_Korisnik FROM Korisnik WHERE Email = @Email and Sifra = @Password", conn))
+            string email = txtEmail.Text.Trim();
+            string lozinka = txtPassword.Text.Trim();
+
+            if (Metode.KorisnikPostoji(email))
             {
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    Session["KorisnikID"] = result.ToString();
-                    Response.Redirect("Home.aspx");
-                }
-                else
-                {
-                    string script = "NoAccount();";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "NoAccScript", script, true);
-                }
+                Session["KorisnikID"] = Metode.KorisnikLogin(email, lozinka);
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                string script = "NalogNePostoji();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "NalogNePostojiScript", script, true);
             }
         }
     }
