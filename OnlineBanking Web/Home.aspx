@@ -9,13 +9,14 @@
         <div class="stanje-wrapper">
             <div id="stanjeValue" class="stanje-value" runat="server"></div>
             <div class="bar">
-                <div class="fill" style="width: 50%;"></div> <!-- Adjust width dynamically -->
+                <div class="fill"></div> 
             </div>
         </div>
     </div>
+    <h2 class="bankomat-text">Bankomat:</h2>
     <div class="bankomat">
         <select id="listaTransakcije" runat="server"></select>
         <input type="text" id="txtTransakcijaSuma" placeholder="Unesi sumu" runat="server">
-        <button id="btnDepozit" runat="server" onserverclick="btnDepozit_Click">Submit</button>
+        <button id="btnDepozit" runat="server" onserverclick="btnDepozit_Click">Depozit</button>
     </div>
 </asp:Content>

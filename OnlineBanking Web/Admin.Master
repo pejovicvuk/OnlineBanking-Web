@@ -19,10 +19,10 @@
                 </div>
                 <div class="navigation">
                     <ul>
-                        <li><a href="#">Pocetna</a></li>
-                        <li><a href="#">Nalog</a></li>
-                        <li><a href="#">Transakcije</a></li>
-                        <li><a href="#">Racuni</a></li>
+                        <li><a href="Home.aspx">Pocetna</a></li>
+                        <li><a href="Nalog.aspx">Nalog</a></li>
+                        <li><a href="Transakcije.aspx">Transakcije</a></li>
+                        <li><a href="Racuni.aspx">Racuni</a></li>
                     </ul>
                 </div>
             </div>

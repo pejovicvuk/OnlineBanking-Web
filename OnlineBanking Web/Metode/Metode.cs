@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -159,6 +160,93 @@ namespace OnlineBanking_Web
                     updateCmd.Parameters.AddWithValue("@BrojRacuna", brojRacuna);
                     updateCmd.ExecuteNonQuery();
                 }
+            }
+        }
+        public static void KreirajTransakcijuBankomat(HtmlSelect listaTransakcije, HtmlInputText transakcijaSuma, Page page)
+        {
+            string brojPrimaoca = listaTransakcije.Value;
+            decimal iznos = Convert.ToDecimal(transakcijaSuma.Value);
+            if (brojPrimaoca == "0")
+            {
+                string script = "NemasRacun();";
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "NemasRacunScript", script, true);
+                return;
+            }
+
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+                using (SqlCommand cmdInsert = new SqlCommand("Transakcija_Insert", conn))
+                {
+                    cmdInsert.CommandType = CommandType.StoredProcedure;
+
+                    cmdInsert.Parameters.AddWithValue("@Iznos", iznos);
+                    cmdInsert.Parameters.AddWithValue("@broj_platioca", "0");
+                    cmdInsert.Parameters.AddWithValue("@broj_primaoca", brojPrimaoca);
+                    cmdInsert.Parameters.AddWithValue("@Id_Tip_Transakcije", 1);
+                    cmdInsert.ExecuteNonQuery();
+                }
+            }
+        }
+        public static object IzvuciPodatak(string podatak)
+        {
+            SqlConnection conn = Konekcija.Connect();
+            conn.Open();
+            string query = $"SELECT {podatak} FROM Korisnik WHERE Id_Korisnik = @KorisnikID";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@KorisnikID", Convert.ToInt16(HttpContext.Current.Session["KorisnikID"]));
+            object result = cmd.ExecuteScalar();
+            conn.Close();
+            return result;
+        }
+        public static DataTable TransakcijeDtbl()
+        {
+            List<string> userAccounts = new List<string>();
+
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+
+                string queryRacun = "SELECT Broj_Racuna FROM Racun WHERE ID_Korisnik = @KorisnikID";
+                using (SqlCommand cmd = new SqlCommand(queryRacun, conn))
+                {
+                    cmd.Parameters.AddWithValue("@KorisnikID", Convert.ToInt16(HttpContext.Current.Session["KorisnikID"]));
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string brojRacuna = reader.GetString(0);
+                            userAccounts.Add(brojRacuna);
+                        }
+                    }
+                }
+
+                DataTable dtbl = new DataTable();
+                dtbl.Columns.Add("Iznos");
+                dtbl.Columns.Add("Vreme");
+                dtbl.Columns.Add("Broj_Racuna_Primaoca");
+                dtbl.Columns.Add("Broj_Racuna_Platioca");
+
+                foreach (string brojRacuna in userAccounts)
+                {
+                    string queryTabela = "SELECT Iznos, Vreme, Broj_Racuna_Primaoca, Broj_Racuna_Platioca FROM Transakcije WHERE Broj_Racuna_Primaoca = @BrojRacuna OR Broj_Racuna_Platioca = @BrojRacuna";
+                    using (SqlCommand cmdTabela = new SqlCommand(queryTabela, conn))
+                    {
+                        cmdTabela.Parameters.AddWithValue("@BrojRacuna", brojRacuna);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmdTabela))
+                        {
+                            DataTable tempTable = new DataTable();
+                            adapter.Fill(tempTable);
+
+                            foreach (DataRow row in tempTable.Rows)
+                            {
+                                dtbl.ImportRow(row);
+                            }
+                        }
+                    }
+                }
+
+                return dtbl;
             }
         }
     }

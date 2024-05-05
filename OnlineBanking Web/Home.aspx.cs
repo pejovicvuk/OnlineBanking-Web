@@ -16,7 +16,7 @@ namespace OnlineBanking_Web
             if (!IsPostBack)
             {
                 listaTransakcije.Items.Clear();
-                listaTransakcije.Items.Add(new ListItem("Select Transaction", "0"));
+                listaTransakcije.Items.Add(new ListItem("Odaberi racun za depozit", "0"));
 
                 Metode.PrikaziOdabirRacuna(listaTransakcije);
 
@@ -29,6 +29,7 @@ namespace OnlineBanking_Web
         {
             Metode.BankomatDepozit(listaTransakcije, txtTransakcijaSuma, this.Page);
             stanjeValue.InnerText = Metode.UkupnoStanje().ToString();
+            Metode.KreirajTransakcijuBankomat(listaTransakcije, txtTransakcijaSuma, this.Page);
         }
     }
 }

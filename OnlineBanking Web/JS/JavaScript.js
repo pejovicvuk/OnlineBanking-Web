@@ -10,3 +10,5 @@ function NalogNePostoji() {
 function NemasRacun() {
     alert('Izaberi ili napravi novi racun!');
 }
+//popuni bar
+//vidi sifru

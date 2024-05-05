@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,10 @@ namespace OnlineBanking_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            imeNalog.InnerText = Metode.IzvuciPodatak("Ime").ToString();
+            prezimeNalog.InnerText = Metode.IzvuciPodatak("Prezime").ToString();
+            emailNalog.InnerText = Metode.IzvuciPodatak("Email").ToString();
+            loznikaNalog.InnerText = Metode.IzvuciPodatak("Sifra").ToString();
         }
     }
 }

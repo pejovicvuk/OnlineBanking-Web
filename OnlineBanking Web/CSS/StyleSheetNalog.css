@@ -1,0 +1,50 @@
+﻿.nalog-form {
+    max-width: 600px; /* Increased width for better readability */
+    margin: 50px auto;
+    padding: 30px; /* Increased padding for better spacing */
+    border: 2px solid #ddd;
+    border-radius: 15px; /* Increased border radius for a softer look */
+    background-color: #f9f9f9;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin between form rows */
+    border-bottom: 2px solid #ccc; /* Increased border thickness */
+}
+
+.label {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+    font-size: 20px; /* Larger font size for labels */
+}
+
+.template {
+    flex: 2;
+    padding-bottom: 10px; /* Increased padding for better spacing */
+    font-size: 18px; /* Larger font size for input values */
+}
+
+.checkbox {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Move the checkbox to the right */
+}
+
+    .checkbox input[type="checkbox"] {
+        margin-right: 10px; /* Increased margin for checkbox */
+    }
+
+    .checkbox label {
+        color: #555;
+        font-size: 18px; /* Larger font size for checkbox label */
+    }
+
+.lozinkatemplate {
+    flex: 2; /* Adjust flex value to align with other templates */
+    padding-bottom: 10px; /* Increased padding for better spacing */
+    font-size: 18px; /* Larger font size for input values */
+}
