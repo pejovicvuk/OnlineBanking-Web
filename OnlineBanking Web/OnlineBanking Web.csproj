@@ -70,6 +70,7 @@
     <Content Include="CSS\StyleSheetAdmin.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="CSS\StyleSheetRacuni.css" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="Login.aspx" />
     <Content Include="Nalog.aspx" />

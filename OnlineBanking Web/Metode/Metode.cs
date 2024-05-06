@@ -181,7 +181,7 @@ namespace OnlineBanking_Web
                     cmdInsert.CommandType = CommandType.StoredProcedure;
 
                     cmdInsert.Parameters.AddWithValue("@Iznos", iznos);
-                    cmdInsert.Parameters.AddWithValue("@broj_platioca", "0");
+                    cmdInsert.Parameters.AddWithValue("@broj_platioca", "Bankomat");
                     cmdInsert.Parameters.AddWithValue("@broj_primaoca", brojPrimaoca);
                     cmdInsert.Parameters.AddWithValue("@Id_Tip_Transakcije", 1);
                     cmdInsert.ExecuteNonQuery();
@@ -247,6 +247,34 @@ namespace OnlineBanking_Web
                 }
 
                 return dtbl;
+            }
+        }
+        public static DataTable RacuniDtbl()
+        {
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+                string query = $"SELECT Broj_Racuna, Stanje FROM Racun WHERE Id_Korisnik = @KorisnikID";
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                {
+                    adapter.SelectCommand.Parameters.AddWithValue("@KorisnikID", Convert.ToInt16(HttpContext.Current.Session["KorisnikID"]));
+                    DataTable dtbl = new DataTable();
+                    adapter.Fill(dtbl);
+                    return dtbl;
+                }
+            }
+        }
+        public static void KreirajRacun()
+        {
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+                string query = "Racun_Insert @KorisnikID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@KorisnikID", Convert.ToInt16(HttpContext.Current.Session["KorisnikID"]));
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }

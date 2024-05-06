@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,11 @@ namespace OnlineBanking_Web
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Unnamed_ServerClick(object sender, EventArgs e)
+        {
+            Metode.KreirajRacun();
         }
     }
 }
