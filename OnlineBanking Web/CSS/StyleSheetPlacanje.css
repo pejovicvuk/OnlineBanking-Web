@@ -1,0 +1,42 @@
+﻿.placanje {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+}
+
+#listaPlacanje, #primaocRacun, #placanjeSuma, #btnPlati {
+    display: block;
+    margin: 10px auto; /* Center horizontally */
+    padding: 10px;
+    font-size: 16px; /* Adjust as needed */
+    width: 80%; /* Adjust width as needed */
+    max-width: 300px; /* Limit maximum width */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#btnPlati {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    #btnPlati:hover {
+        background-color: #45a049;
+    }
+
+input[type="text"], select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+    input[type="text"]:focus, select:focus {
+        border: 1px solid #4CAF50;
+        outline: none;
+    }
