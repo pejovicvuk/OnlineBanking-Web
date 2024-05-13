@@ -74,6 +74,7 @@
     <Content Include="JS\JavaScript.js" />
     <Content Include="Login.aspx" />
     <Content Include="Nalog.aspx" />
+    <Content Include="Placanje.aspx" />
     <Content Include="Racuni.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="CSS\StyleSheetRegistration.css" />
@@ -115,6 +116,13 @@
     </Compile>
     <Compile Include="Nalog.aspx.designer.cs">
       <DependentUpon>Nalog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Placanje.aspx.cs">
+      <DependentUpon>Placanje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Placanje.aspx.designer.cs">
+      <DependentUpon>Placanje.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Racuni.aspx.cs">

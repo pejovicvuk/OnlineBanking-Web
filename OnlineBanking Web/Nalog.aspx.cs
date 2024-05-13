@@ -15,7 +15,7 @@ namespace OnlineBanking_Web
             imeNalog.InnerText = Metode.IzvuciPodatak("Ime").ToString();
             prezimeNalog.InnerText = Metode.IzvuciPodatak("Prezime").ToString();
             emailNalog.InnerText = Metode.IzvuciPodatak("Email").ToString();
-            loznikaNalog.InnerText = Metode.IzvuciPodatak("Sifra").ToString();
+            lozinkaNalog.Text = Metode.IzvuciPodatak("Sifra").ToString();
         }
     }
 }

@@ -162,32 +162,6 @@ namespace OnlineBanking_Web
                 }
             }
         }
-        public static void KreirajTransakcijuBankomat(HtmlSelect listaTransakcije, HtmlInputText transakcijaSuma, Page page)
-        {
-            string brojPrimaoca = listaTransakcije.Value;
-            decimal iznos = Convert.ToDecimal(transakcijaSuma.Value);
-            if (brojPrimaoca == "0")
-            {
-                string script = "NemasRacun();";
-                ScriptManager.RegisterStartupScript(page, page.GetType(), "NemasRacunScript", script, true);
-                return;
-            }
-
-            using (SqlConnection conn = Konekcija.Connect())
-            {
-                conn.Open();
-                using (SqlCommand cmdInsert = new SqlCommand("Transakcija_Insert", conn))
-                {
-                    cmdInsert.CommandType = CommandType.StoredProcedure;
-
-                    cmdInsert.Parameters.AddWithValue("@Iznos", iznos);
-                    cmdInsert.Parameters.AddWithValue("@broj_platioca", "Bankomat");
-                    cmdInsert.Parameters.AddWithValue("@broj_primaoca", brojPrimaoca);
-                    cmdInsert.Parameters.AddWithValue("@Id_Tip_Transakcije", 1);
-                    cmdInsert.ExecuteNonQuery();
-                }
-            }
-        }
         public static object IzvuciPodatak(string podatak)
         {
             SqlConnection conn = Konekcija.Connect();
@@ -274,6 +248,91 @@ namespace OnlineBanking_Web
                 {
                     cmd.Parameters.AddWithValue("@KorisnikID", Convert.ToInt16(HttpContext.Current.Session["KorisnikID"]));
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void TransferNovca(HtmlSelect listaPlacanje, HtmlInputText primaocRacun, HtmlInputText placanjeSuma, Page page)
+        {
+            string selectedValue = listaPlacanje.Value;
+            if (selectedValue == "0")
+            {
+                string script = "NemasRacun();";
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "NemasRacunScript", script, true);
+                return;
+            }
+
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+
+                string brojRacunaPlatioc = selectedValue;
+                string brojRacunaPrimaoc = primaocRacun.Value;
+                string oduzmiQuery = "UPDATE Racun SET Stanje = Stanje - @TransakcijaSuma WHERE Broj_Racuna = @BrojRacunaPlatioc";
+                string dodajQuery = "UPDATE Racun SET Stanje = Stanje + @TransakcijaSuma WHERE Broj_Racuna = @BrojRacunaPrimaoc";
+
+                using (SqlCommand platiocCmd = new SqlCommand(oduzmiQuery, conn))
+                {
+                    platiocCmd.Parameters.AddWithValue("@TransakcijaSuma", Convert.ToDecimal(placanjeSuma.Value));
+                    platiocCmd.Parameters.AddWithValue("@BrojRacunaPlatioc", brojRacunaPlatioc);
+                    platiocCmd.ExecuteNonQuery();
+                }
+                using (SqlCommand primaocCmd = new SqlCommand(dodajQuery, conn))
+                {
+                    primaocCmd.Parameters.AddWithValue("@TransakcijaSuma", Convert.ToDecimal(placanjeSuma.Value));
+                    primaocCmd.Parameters.AddWithValue("@BrojRacunaPrimaoc", brojRacunaPrimaoc);
+                    primaocCmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void KreirajTransakcijuBankomat(HtmlSelect listaTransakcije, HtmlInputText transakcijaSuma, Page page)
+        {
+            string brojPrimaoca = listaTransakcije.Value;
+            decimal iznos = Convert.ToDecimal(transakcijaSuma.Value);
+            if (brojPrimaoca == "0")
+            {
+                string script = "NemasRacun();";
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "NemasRacunScript", script, true);
+                return;
+            }
+
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+                using (SqlCommand cmdInsert = new SqlCommand("Transakcija_Insert", conn))
+                {
+                    cmdInsert.CommandType = CommandType.StoredProcedure;
+
+                    cmdInsert.Parameters.AddWithValue("@Iznos", iznos);
+                    cmdInsert.Parameters.AddWithValue("@broj_platioca", "Bankomat");
+                    cmdInsert.Parameters.AddWithValue("@broj_primaoca", brojPrimaoca);
+                    cmdInsert.Parameters.AddWithValue("@Id_Tip_Transakcije", 1);
+                    cmdInsert.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void KreirajTransakcijuRacun(HtmlSelect listaPlacanje, HtmlInputText primaocRacun, HtmlInputText placanjeSuma, Page page)
+        {
+            string platiocRacun = listaPlacanje.Value;
+            decimal iznos = Convert.ToDecimal(placanjeSuma.Value);
+            if (platiocRacun == "0")
+            {
+                string script = "NemasRacun();";
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "NemasRacunScript", script, true);
+                return;
+            }
+
+            using (SqlConnection conn = Konekcija.Connect())
+            {
+                conn.Open();
+                using (SqlCommand cmdInsert = new SqlCommand("Transakcija_Insert", conn))
+                {
+                    cmdInsert.CommandType = CommandType.StoredProcedure;
+
+                    cmdInsert.Parameters.AddWithValue("@Iznos", iznos);
+                    cmdInsert.Parameters.AddWithValue("@broj_platioca", platiocRacun);
+                    cmdInsert.Parameters.AddWithValue("@broj_primaoca", primaocRacun.Value);
+                    cmdInsert.Parameters.AddWithValue("@Id_Tip_Transakcije", 2);
+                    cmdInsert.ExecuteNonQuery();
                 }
             }
         }

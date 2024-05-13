@@ -19,11 +19,20 @@
     </div>
     <div class="form-row">
         <div class="label">Lozinka:</div>
-        <div id="loznikaNalog" class="template" runat="server">lozinkatemplate</div>
+        <asp:TextBox ID="lozinkaNalog" ReadOnly="true" runat="server"></asp:TextBox>
         <div class="checkbox">
-            <input type="checkbox" id="showPassword">
+            <input type="checkbox" id="showPassword" runat="server" onchange="togglePasswordVisibility()">
             <label for="showPassword">Show Password</label>
         </div>
     </div>
 </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('<%= lozinkaNalog.ClientID %>');
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        }
+        window.onload = function () {
+            togglePasswordVisibility();
+        };
+    </script>
 </asp:Content>

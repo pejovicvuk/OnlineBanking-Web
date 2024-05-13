@@ -22,6 +22,7 @@
                         <li><a href="Home.aspx">Pocetna</a></li>
                         <li><a href="Nalog.aspx">Nalog</a></li>
                         <li><a href="Transakcije.aspx">Transakcije</a></li>
+                        <li><a href="Placanje.aspx">Novo placanje</a></li>
                         <li><a href="Racuni.aspx">Racuni</a></li>
                     </ul>
                 </div>

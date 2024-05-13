@@ -11,52 +11,43 @@ namespace OnlineBanking_Web
 {
 
 
-    public partial class Nalog
+    public partial class Placanje
     {
 
         /// <summary>
-        /// imeNalog control.
+        /// listaPlacanje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl imeNalog;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect listaPlacanje;
 
         /// <summary>
-        /// prezimeNalog control.
+        /// primaocRacun control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prezimeNalog;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText primaocRacun;
 
         /// <summary>
-        /// emailNalog control.
+        /// placanjeSuma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl emailNalog;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText placanjeSuma;
 
         /// <summary>
-        /// lozinkaNalog control.
+        /// btnPlati control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lozinkaNalog;
-
-        /// <summary>
-        /// showPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox showPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnPlati;
     }
 }
